@@ -43,7 +43,7 @@ Order *read_orders(const char *filename, int *count)
     {
         if (n == capacity)
         {
-            order *tmp;
+            Order *tmp;
 
             capacity *= 2;
             tmp = realloc(orders, sizeof(Order) * (size_t)capacity);
@@ -96,3 +96,27 @@ void swap_orders(Order *a, Order *b)
     *a = *b;
     *b = tmp;
 }
+
+int partition(Order arr[], int low, int high)
+{
+    int pivot_index;
+    Order pivot;
+    int i, j;
+
+    pivot_index = low + rand() % (high - low +1);
+    swap_orders(&arr[pivot_index], &arr[high]);
+    pivot = arr[high];
+
+    i = low -1;
+    for (j = low; j < high; j++)
+    {
+        if (compare_orders(&arr[j], &pivot) < 0)
+        {
+            i++;
+            swap_orders(&arr[i], &arr[j]);
+        }
+    }
+    swap_orders(&arr[i + 1], &arr[high]);
+    return (i + 1);
+}
+

@@ -130,3 +130,55 @@ void quicksort(Order arr[], int low, int high)
         quicksort(arr, pi +1, high);
     }
 }
+
+int write_orders(const char *filename, const Order *orders, int count)
+{
+    FILE *fp;
+    int i;
+
+    fp = fopen(filename, "w");
+    if (fp == NULL)
+    {
+        fprintf(stderr, "Error opening file for writing: %s\n", filename);
+        return (-1);
+    }
+
+    for (i = 0; i < count; i++)
+    {
+        fprintf(fp, "%s %s %s %ld\n",
+            orders[i].order_id,
+            orders[i].customer_name,
+            orders[i].category,
+            orders[i].order_value);
+    }
+
+    fclose(fp);
+    return (0);
+}
+
+int main(void)
+{
+    Order *orders;
+    int count;
+
+    srand((unsigned int)time(NULL));
+
+    orders = read_orders("orders.txt", &count);
+    if (orders == NULL)
+    {
+        fprintf(stderr, "Error reading orders from file: orders.txt\n");
+        return (1);
+    }
+
+    quicksort(orders, 0, count -1);
+
+    if (write_orders("sorted_orders.txt", orders, count) != 0)
+    {
+        free(orders);
+        return (1);
+    }
+
+    free(orders);
+    return (0);
+
+}

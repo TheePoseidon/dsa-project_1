@@ -75,3 +75,4 @@ const char *priority_label(int priority)
     return("Unknown");
 }
 
+/* Function to create a new sample node with the given id, type, and priority. */

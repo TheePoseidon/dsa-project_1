@@ -56,7 +56,7 @@ Order *read_orders(const char *filename, int *count)
             orders = tmp;
         }
 
-        if (fscanf(fp, "%31s %63s %63s %1d",
+        if (fscanf(fp, "%31s %63s %63s %ld",
             orders[n].order_id,
             orders[n].customer_name,
             orders[n].category,

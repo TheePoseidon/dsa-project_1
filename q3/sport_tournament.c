@@ -10,3 +10,15 @@ static const int PARTICIPANTS[] = {
 	10, 12, 14, 16, 18, 22, 24, 26, 29, 33, 37, 41, 44, 47, 50, 54, 57,
 	60, 63, 66, 70, 74, 77, 80, 83, 87, 92, 97, 25, 28, 30, 34, 39
 };
+
+# define PARTICIPANT_COUNT ((int)(sizeof(PARTICIPANTS) / sizeof(PARTICIPANTS[0])))
+
+typedef struct node
+{
+	int is_leaf;
+	int participant_id;
+	char match_id[MATCH_ID_LEN];
+	struct node *left;
+	struct node *right;
+	struct node *parent;
+} Node;

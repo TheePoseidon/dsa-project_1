@@ -2,7 +2,7 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define NAME_LEN 16
+# define MATCH_ID_LEN 16
 
 static const int PARTICIPANTS[] = {
 	42, 17, 68, 9, 23, 55, 81, 4, 13, 20, 31, 49, 61, 75, 90, 2, 7, 11,
